@@ -2,6 +2,7 @@ import { readFileSync, writeFileSync } from 'fs';
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { v4 as uuidv4 } from "uuid";
+import { logEvents } from "../middlewares/logger.middlewares.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const jsonProduto = __dirname + '/../data/produto.json';
