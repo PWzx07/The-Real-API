@@ -1,6 +1,6 @@
 import express from "express";
 import { logger, logEvents } from "./middlewares/logger.middlewares.js";
-import produtosRoutes from "./routes/produtoRouter.js";
+import produtosRoutes from "./routes/produto.route.js";
 
 const app = express();
 const PORT = 3300;

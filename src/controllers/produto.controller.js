@@ -1,6 +1,5 @@
 import { readFileSync, writeFileSync } from 'fs';
 import { dirname } from 'path';
-import { json } from 'stream/consumers';
 import { fileURLToPath } from 'url';
 import { v4 as uuidv4 } from "uuid";
 
@@ -55,4 +54,19 @@ export const enviarProduto = (req, res)=>{     //POST
   writeFileSync(jsonProduto, JSON.stringify(produtos, null, 2), "utf-8");
   
   res.status(201).json(novoProduto);
-}
+};
+
+export const deletarId=  (req, res)=>{
+  const id = req.params.id;
+
+  const produtoIndex = produtos.findIndex(produto => produto.id === id);
+
+  const produtoRemovido = produtos.splice(produtoIndex, 1)[0];
+
+  writeFileSync(jsonProduto, JSON.stringify(produtos, null, 2), "utf-8");
+
+  res.status(200).json({
+    mensagem: "Produto removido com sucesso",
+    produto: produtoRemovido
+  });
+};
