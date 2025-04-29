@@ -9,7 +9,6 @@ app.use(logger);
 app.use(express.json());
 
 app.use("/produtos", produtosRoutes);
-//app.use("/produtos/ID", * )
 
 app.listen(PORT, ()=>{
     console.log(`Rodando na porta http://localhost:${PORT}`);

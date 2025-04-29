@@ -12,5 +12,12 @@
     "preco": "2500.00",
     "descricao": "Televisao com conexao a internet",
     "marca": "LG"
+  },
+  {
+    "id": "fce91da5-34e9-4077-94f0-51a5c6d4d585",
+    "nome": "LG K10",
+    "preco": "1000.00",
+    "descricao": "Celular extremamente ruim"
   }
-]
+]  
+  
