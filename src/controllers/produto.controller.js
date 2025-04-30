@@ -56,7 +56,33 @@ export const enviarProduto = (req, res)=>{     //POST
   res.status(201).json(novoProduto);
 };
 
-export const deletarId=  (req, res)=>{
+export const atualizarProduto = (req, res)=>{
+  const id = req.params.id;
+
+  const newProduto = req.body;
+
+  const produtoIndex = produtos.findIndex(produto => produto.id === id);
+
+  if (produtoIndex === -1) {
+    return res.status(404).json({ mensagem: "Produto não encontrado" });
+  }
+
+  // Atualizar os campos do produto
+  produtos[produtoIndex] = {
+    ...produtos[produtoIndex],  
+    ...newProduto,              
+    id                          
+  };
+
+  writeFileSync(jsonProduto, JSON.stringify(produtos, null, 2), "utf-8");
+
+  res.status(200).json({
+    mensagem: "Produto atualizado com sucesso",
+    produto: produtos[produtoIndex]
+  });
+};
+
+export const deletarId =  (req, res)=>{
   const id = req.params.id;
 
   const produtoIndex = produtos.findIndex(produto => produto.id === id);
