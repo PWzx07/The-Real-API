@@ -1,0 +1,73 @@
+// | **Tabela**        | **Para que serve**                                                             |
+// | ----------------- | ------------------------------------------------------------------------------ |
+// | **usuarios**      | Armazena os dados dos usuários (clientes ou administradores)                   |
+// | **produtos**      | Catálogo dos produtos disponíveis para venda                                   |
+// | **categorias**    | Organização dos produtos por tipo (ex: Eletrônicos, Roupas, Alimentos)         |
+// | **pedidos**       | Registra os pedidos realizados pelos usuários                                  |
+// | **itens\_pedido** | Armazena os produtos que fazem parte de cada pedido (ligação pedido ↔ produto) |
+// | **carrinho**      | Armazena temporariamente os produtos que o usuário adiciona antes de comprar   |
+// | **enderecos**     | Guarda os endereços de entrega cadastrados pelos usuários                      |
+// | **pagamentos**    | Informações e status de pagamento dos pedidos                                  |
+// | **avaliacoes**    | Comentários e notas dadas pelos usuários aos produtos que compraram            |
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+
+generator client {
+provider =  "prisma-client-js"
+}
+
+enum Users{
+  CLIENTE
+  ADMIN
+}
+model usuarios{
+  id          String      @id @default(uuid())
+  nome        String
+  email       String      @unique
+  senha       String
+  tipo        Users
+  creado_em  DateTime   @default(now())
+}
+
+model produtos{
+  id            String      @id @default(uuid())
+  nome          String
+  descricao     String
+  preco         Float
+  estoque       Int
+  categoriaId   String
+  imagem        String
+  criado_em     DateTime   @default(now())  
+}
+
+// model categorias{
+
+// }
+
+//model pedidos{
+
+//}
+
+// model itens_pedido{
+
+// }
+
+// model carrinho{
+
+// }
+
+// model enderecos{
+
+// }
+
+// model pagamentos{
+
+// }
+
+// model avaliacoes{
+
+// }

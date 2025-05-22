@@ -1,16 +1,21 @@
 import express from "express";
+import dotenv from "dotenv";
 import { logger, logEvents } from "./middlewares/logger.middlewares.js";
-import produtosRoutes from "./routes/produto.route.js";
+import usuarioRoutes from "./routes/usuario.route.js";
+
+dotenv.config();
 
 const app = express();
-const PORT = 3300;
+const PORT = 3000 || process.env.PORT;
 
 app.use(logger);
 app.use(express.json());
 
-app.use("/produtos", produtosRoutes);
-
 app.listen(PORT, ()=>{
     console.log(`Rodando na porta http://localhost:${PORT}`);
-    logEvents(`Rodando na porta http://localhost:${PORT}`,`listen.log`);
+    logEvents(`Rodando na porta htt://localhost:${PORT}`,`listen.log`);
 });
+
+app.use("/usuario", usuarioRoutes);
+
+export default app;
