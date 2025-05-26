@@ -126,7 +126,7 @@ enum Users {
 ## ✍️ Autor
 
 **Pedro Washington**  
-[LinkedIn](https://www.linkedin.com/) • [GitHub](https://github.com/)
+[LinkedIn](https://www.linkedin.com/in/devpedrow/) • [GitHub](https://github.com/PWzx07/)
 
 ---
 
