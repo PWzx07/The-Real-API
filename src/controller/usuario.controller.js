@@ -1,4 +1,4 @@
-import { getUsuario,filterUsuario } from "../service/usuario.service.js";
+import { getUsuario,filterUsuario, createUsuario } from "../service/usuario.service.js";
 
 class UsuarioController {
     // READ - GET
@@ -8,10 +8,47 @@ class UsuarioController {
         res.status(200).json({mensagem: "Todos os usuarios", usuario});
     }
 
+    // FILTER - GET:ID
     async filterUsuarioController(req, res){
-        const usuario = await filterUsuario();
+        const { id } = req.params;
+        const usuario = await filterUsuario(id);
 
+        if (!usuario || usuario.length === 0) {
+            return res.status(404).json({ mensagem: 'Usuário não encontrado' });
+        }
         res.status(200).json({mensagem: "Usuario correspondente", usuario});
+    }
+
+    // CREATE - POST
+    async createUsuarioController(req, res){
+        const {
+            nome,
+            email,
+            senha,
+            tipo,
+        } = req.body;
+
+        if(
+            !nome||
+            !email||
+            !senha||
+            !tipo
+        ){
+            res.status(400).json({mensagem: "AS informações inseridas são inválidas"});
+        }
+        try{
+            const newUsuario = await createUsuario({
+                nome,
+                email,
+                senha,
+                tipo
+            });
+
+            res.status(201).json({mensagem:"Usuario criado", newUsuario});
+        }catch(error){
+            console.error("Erro ao criar usuario:", error);
+            res.status(500).json({mensagem:"Erro ao criar usuario"});
+        }
     }
 }
 

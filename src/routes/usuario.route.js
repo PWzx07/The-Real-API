@@ -35,4 +35,20 @@ router.get("/", usuarioController.getUsuarioController);
  */
 router.get("/:id", usuarioController.filterUsuarioController);
 
+//CREATE das rotas
+/**
+ * @swagger
+ * /usuario:
+ *   post:
+ *     summary: Cria um Usuario novo
+ *     tags:
+ *      - Usuario
+ *     responses:
+ *       201:
+ *         description: Criado com sucesso
+ *       500:
+ *         description: Erro ao criar Usuario 
+ */
+router.post("/registra", usuarioController.createUsuarioController);
+
 export default router; 
