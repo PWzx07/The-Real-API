@@ -42,6 +42,7 @@ npm run dev
 | GET    | `/usuario`                | Lista todos os usuários                  |
 | GET    | `/usuario/:id`            | Retorna um usuário específico por ID     |
 | POST   | `/usuario/registra`       | Cria um novo usuário                     |
+| PUT    | `/usuario/atualizar/:id`  | Atualiza um usuário                      |
 | GET    | `/api-docs`               | Acessa a documentação Swagger            |
 
 > ⚠️ Rota de criação exige os campos: `nome`, `email`, `senha`, `tipo` (CLIENTE ou ADMIN)
