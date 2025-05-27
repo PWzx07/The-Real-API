@@ -1,5 +1,6 @@
 import { Router } from "express";
 import usuarioController from "../controller/usuario.controller.js";
+import { updateUsuario } from "../service/usuario.service.js";
 
 const router = Router();
 
@@ -50,5 +51,21 @@ router.get("/:id", usuarioController.filterUsuarioController);
  *         description: Erro ao criar Usuario 
  */
 router.post("/registra", usuarioController.createUsuarioController);
+
+//UPDATE das rotas
+/**
+ * @swagger
+ * /usuario:
+ *   put:
+ *     summary: Atualiza o usuario existente
+ *     tags:
+ *      - Usuario
+ *     responses:
+ *       200:
+ *         description: Atualizado com sucesso
+ *       500:
+ *         description: Erro ao atualizar Usuario 
+ */
+router.put("/atualizar/:id", usuarioController.updateUsuarioController);
 
 export default router; 

@@ -26,3 +26,17 @@ export async function createUsuario(db){
    });
     return newUsuario;
 }
+
+// UPDATE - PUT
+export async function updateUsuario(id, db){
+    const updateUsuario = prisma.usuarios.update({
+        where:{id},
+        data:{
+            nome: db.nome,
+            email: db.email,
+            senha: db.senha,
+            tipo: db.tipo,
+        }
+    });
+    return updateUsuario;
+}

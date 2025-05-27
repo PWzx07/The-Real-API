@@ -25,4 +25,26 @@ describe("Testes da rota /usuario", () => {
     expect(res.statusCode).toBe(201);
     expect(res.body).toHaveProperty("newUsuario");
   });
+
+  test("PUT /usuario/atualizar/:id", async () => {
+  const createRes = await request(app).post("/usuario/registra").send({
+    nome: "Criado",
+    email: `teste${Date.now()}@mail.com`,
+    senha: "123",
+    tipo: "CLIENTE"
+  });
+
+  const id = createRes.body.newUsuario.id;
+
+  const updateRes = await request(app).put(`/usuario/atualizar/${id}`).send({
+    nome: "Atualizado",
+    email: `att${Date.now()}@mail.com`,
+    senha: "321",
+    tipo: "CLIENTE"
+  });
+
+  expect(updateRes.statusCode).toBe(200);
+  expect(updateRes.body).toHaveProperty("upUsuario");
+  expect(updateRes.body.upUsuario.nome).toBe("Atualizado");
+});
 });
