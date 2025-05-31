@@ -53,7 +53,7 @@ describe("Testes da rota /usuario", () => {
     const deleteUsuario = await request(app).delete(`/usuario/deletar/${id}`);
 
     const find = await request(app).get(`/usuario/${id}`);
-
+    
     expect(deleteUsuario.statusCode).toBe(204);
     expect(find.statusCode).toBe(404);
   })
