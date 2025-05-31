@@ -1,4 +1,4 @@
-import { getUsuario,filterUsuario, createUsuario, updateUsuario } from "../service/usuario.service.js";
+import { getUsuario,filterUsuario, createUsuario, updateUsuario, deleteUsuario } from "../service/usuario.service.js";
 
 class UsuarioController {
     // READ - GET
@@ -88,6 +88,22 @@ class UsuarioController {
             console.error("Erro ao atualiza usuario:", error);
             res.status(500).json({mensagem:"Erro ao atualiza usuario"});
         }
+    }
+
+    // DELETE
+    async deleteUsuarioController(req, res){
+        const { id } = req.params;
+
+         const delUsuario =  await deleteUsuario(id);
+
+        if(!delUsuario) return res.status(404).json({
+            message:"Usuario não encontrado"
+        });
+
+        res.status(204).json({
+            message:"Usuario deletado!",
+            UsuarioDeletado: delUsuario
+        });
     }
 }
 

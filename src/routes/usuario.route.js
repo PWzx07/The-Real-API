@@ -68,4 +68,20 @@ router.post("/registra", usuarioController.createUsuarioController);
  */
 router.put("/atualizar/:id", usuarioController.updateUsuarioController);
 
+// DELETE das rotas
+/**
+ * @swagger
+ * /usuario:
+ *   delete:
+ *     summary: Delete o usuario existente
+ *     tags:
+ *      - Usuario
+ *     responses:
+ *       200:
+ *         description: Deletado com sucesso
+ *       500:
+ *         description: Erro ao deletar Usuario 
+ */
+router.delete("/deletar/:id", usuarioController.deleteUsuarioController);
+
 export default router; 

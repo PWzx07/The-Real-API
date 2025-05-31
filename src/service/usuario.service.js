@@ -16,7 +16,7 @@ export async function filterUsuario(id) {
 
 // CREATE - POST
 export async function createUsuario(db){
-   const newUsuario = prisma.usuarios.create({
+   const newUsuario = await prisma.usuarios.create({
         data: {
             nome: db.nome,
             email: db.email,
@@ -29,7 +29,7 @@ export async function createUsuario(db){
 
 // UPDATE - PUT
 export async function updateUsuario(id, db){
-    const updateUsuario = prisma.usuarios.update({
+    const updateUsuario = await prisma.usuarios.update({
         where:{id},
         data:{
             nome: db.nome,
@@ -39,4 +39,13 @@ export async function updateUsuario(id, db){
         }
     });
     return updateUsuario;
+}
+
+// DELETE - DELETE
+export async function deleteUsuario(id){
+    const exist = await prisma.usuarios.findUnique({where:{id}});
+    if(!exist) return null;
+
+    const deleteUsuario = await prisma.usuarios.delete({where:{id}});
+    return deleteUsuario;
 }
